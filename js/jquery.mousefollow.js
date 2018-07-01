@@ -14,7 +14,7 @@
 			x: 20,                   // 距离鼠标的水平距离
 			y: 20                    // 距离鼠标的垂直距离
 		},
-		_.settings = $.extend({}, _.defaults, opt)
+		_.settings = $.extend({}, _.defaults, opt);
 	}
 
 	// 定义MouseFollow的方法
@@ -22,17 +22,24 @@
 		// 初始化
 		init: function() {
 			var _ = this;
+			_.addDOM();
 			_.mouseEnter();
 			_.mouseMove();
 			_.mouseOut();
+		},
+
+		// 插入DOM
+		addDOM: function(){
+			var _ = this;
+			if (!$('.'+_.settings.className).length) {
+				$('body').append('<div class="'+_.settings.className+'" style="position: fixed; top: 100%; display: none;"></div>');
+			}
 		},
 
 		// 鼠标移入插入HTML
 		mouseEnter: function() {
 			var _ = this;
 			_.el.mouseenter(function() {
-				// 插入显示的内容
-				$('body').append('<div class="'+_.settings.className+'" style="position: fixed; top: 100%; display: none;"></div>');
 				$('.'+_.settings.className).html(_.settings.html).fadeIn(_.settings.speed);
 			});
 		},
@@ -85,7 +92,7 @@
 		mouseOut: function() {
 			var _ = this;
 			_.el.mouseleave(function() {
-				$('.'+_.settings.className).remove();
+				$('.'+_.settings.className).hide();
 			});
 		}
 	}
