@@ -1,6 +1,7 @@
 /*
- *  mousefollow v0.1.0
- *  author 1224100678@qq.com
+ * mousefollow v0.1.0
+ * author 1224100678@qq.com
+ * https://github.com/YuTingtao/mousefollow.js
  */
 ;(function($, window, document, undefined){
 	// 定义MouseFollow构造函数
