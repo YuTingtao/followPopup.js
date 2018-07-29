@@ -2,11 +2,14 @@
 
 #默认参数：
 
-	className: 'js-follow',  // 插入的div的class
 	html: '',                // 插入的html
 	speed: 200,              // 淡出速度
 	x: 20,                   // 距离鼠标的水平距离
-	y: 20                    // 距离鼠标的垂直距离
+	y: 20,                   // 距离鼠标的垂直距离
+	className: 'js-follow',  // 插入的div的class
+	onenter: function(e) {}, // 鼠标进入回调
+	onmove: function(e) {},  // 鼠标移动回调
+	onout: function(e) {}    // 鼠标移除回调
 
 #demo：
 ![image](https://github.com/YuTingtao/mousefollow.js/blob/master/images/eg-1.gif)
