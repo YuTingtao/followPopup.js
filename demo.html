@@ -9,15 +9,16 @@
 	<style>
 	*{ margin: 0; padding: 0; }
 	ul{ list-style: none; }
-
-	.imglist li{
+	.demo-1,.demo-2{
+		overflow: hidden;
+	}
+	.demo-1 li,.demo-2 li{
 		float: left;
 		margin-left: 10px;
 		margin-top: 10px;
 	}
-
-	.imglist li a{
-		display: inline-block;
+	.demo-1 li a,.demo-2 li a{
+		display: block;
 		width: 100px;
 		height: 100px;
 		background: url(images/2.jpg) no-repeat center center;
@@ -34,7 +35,8 @@
 	</style>
 </head>
 <body>
-	<ul class="imglist eg-1">
+	<h1>demo1</h1>
+	<ul class="demo-1">
 		<li data-imgurl="images/1.jpg"><a href="#"></a></li>
 		<li data-imgurl="images/2.jpg"><a href="#"></a></li>
 		<li data-imgurl="images/1.jpg"><a href="#"></a></li>
@@ -46,7 +48,8 @@
 		<li data-imgurl="images/1.jpg"><a href="#"></a></li>
 		<li data-imgurl="images/2.jpg"><a href="#"></a></li>
 	</ul>
-	<ul class="imglist eg-2">
+	<h1>demo2</h1>
+	<ul class="demo-2">
 		<li><a href="#"></a></li>
 		<li><a href="#"></a></li>
 		<li><a href="#"></a></li>
@@ -63,14 +66,18 @@
 	<script src="js/jquery.mousefollow.js"></script>
 	<script tpye="text/javascript">
 	$(function(){
-		$('.eg-1 li').each(function(index, el) {
-			var imgUrl = $(el).data('imgurl');
-			$(el).mousefollow({
-				html: '<img src="'+imgUrl+'" alt="">'
-			});
+		$('.demo-1 li').mousefollow({
+			html: '<img src="" alt="">',
+			onenter: function(e) {
+				var url = $(this).data('imgurl');
+				// 或者 var url = $(e.currentTarget).data('imgurl');
+				$('.js-follow').find('img').attr('src',url);
+			},
+			onmove: function(e) {},
+			onout: function(e) {}
 		});
 		
-		$('.eg-2 li').mousefollow({
+		$('.demo-2 li').mousefollow({
 			html: '<div class="hidden-box"><img src="images/2.jpg" alt=""><p>图片1</p></div>',
 			speed: 0
 		});

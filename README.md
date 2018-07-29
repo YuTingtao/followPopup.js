@@ -1,15 +1,14 @@
 # mousefollow.js
 
-兼容IE7
 #默认参数：
 
-			className: 'js-follow',  // 插入的div的class
-			html: '',                // 插入的html
-			speed: 200,              // 淡出速度
-			x: 20,                   // 距离鼠标的水平距离
-			y: 20                    // 距离鼠标的垂直距离
+	className: 'js-follow',  // 插入的div的class
+	html: '',                // 插入的html
+	speed: 200,              // 淡出速度
+	x: 20,                   // 距离鼠标的水平距离
+	y: 20                    // 距离鼠标的垂直距离
 
-#使用demo：
+#demo：
 ![image](https://github.com/YuTingtao/mousefollow.js/blob/master/images/eg-1.gif)
 
 html：
@@ -63,4 +62,4 @@ html：
 		});
 	});
 	</script>
-  
+

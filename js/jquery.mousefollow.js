@@ -9,11 +9,14 @@
 		var _ = this;
 		_.el = el,
 		_.defaults = {
-			className: 'js-follow',  // 插入的div的class
 			html: '',                // 插入的html
 			speed: 200,              // 淡出速度
 			x: 20,                   // 距离鼠标的水平距离
-			y: 20                    // 距离鼠标的垂直距离
+			y: 20,                   // 距离鼠标的垂直距离
+			className: 'js-follow',  // 插入的div的class
+			onenter: function(e) {}, // 鼠标进入回调
+			onmove: function(e) {},  // 鼠标移动回调
+			onout: function(e) {}    // 鼠标移除回调
 		},
 		_.settings = $.extend({}, _.defaults, opt);
 	}
@@ -32,7 +35,7 @@
 		// 插入DOM
 		addDOM: function(){
 			var _ = this;
-			if (!$('.'+_.settings.className).length) {
+			if ($('.'+_.settings.className).length == 0) {
 				$('body').append('<div class="'+_.settings.className+'" style="position: fixed; top: 100%; display: none;"></div>');
 			}
 		},
@@ -40,8 +43,9 @@
 		// 鼠标移入插入HTML
 		mouseEnter: function() {
 			var _ = this;
-			_.el.mouseenter(function() {
+			_.el.mouseenter(function(e) {
 				$('.'+_.settings.className).html(_.settings.html).fadeIn(_.settings.speed);
+				_.settings.onenter&&_.settings.onenter.call(this,e);
 			});
 		},
 
@@ -86,14 +90,16 @@
 				}
 				setCssX();
 				setCssY();
+				_.settings.onmove&&_.settings.onmove.call(this,event);
 			});
 		},
 
 		// 鼠标移出删除
 		mouseOut: function() {
 			var _ = this;
-			_.el.mouseleave(function() {
+			_.el.mouseleave(function(e) {
 				$('.'+_.settings.className).hide();
+				_.settings.onout&&_.settings.onout.call(this,e);
 			});
 		}
 	}
