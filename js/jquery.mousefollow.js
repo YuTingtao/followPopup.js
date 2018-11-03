@@ -12,7 +12,6 @@
             speed: 200,              // 淡出速度
             x: 20,                   // 距离鼠标的水平距离
             y: 20,                   // 距离鼠标的垂直距离
-            className: 'js-follow',  // 插入的div的class
             onEnter: function(e) {}, // 鼠标进入回调
             onMove: function(e) {},  // 鼠标移动回调
             onOut: function(e) {}    // 鼠标移除回调
@@ -25,9 +24,8 @@
     mouseFollow.prototype = {
         // 插入DOM
         appendDOM: function(){
-            var _class = this.vars.className;
-            if ($('.'+_class).length == 0) {
-                $('body').append('<div class="'+_class+'" style="position: fixed; top: 100%; display: none;"></div>');
+            if ($('.js-follow').length < 1) {
+                $('body').append('<div class="js-follow" style="position: fixed; top: 100%; display: none;"></div>');
             }
         },
 
@@ -38,7 +36,7 @@
                 _html = this.vars.html,
                 _speed = this.vars.speed;
             $this.el.mouseenter(function(e) {
-                $('.'+_class).html(_html).fadeIn(_speed);
+                $('.js-follow').html(_html).fadeIn(_speed);
                 $this.vars.onEnter && $this.vars.onEnter.call(this,e);
             });
         },
@@ -57,26 +55,26 @@
                 var x = event.clientX;
                 var y = event.clientY;
                 var setCssX = function() {
-                    if ( x + _x + $('.'+_class).width() < $(window).width() ) {
-                        $('.'+_class).css({
+                    if ( x + _x + $('.js-follow').width() < $(window).width() ) {
+                        $('.js-follow').css({
                             left: x + _x,
                             right: 'auto'
                         });
                     } else {
-                        $('.'+_class).css({
+                        $('.js-follow').css({
                             left: 'auto',
                             right: $(window).width() - x + _x -10
                         });
                     }
                 }
                 var setCssY = function(){
-                    if ( y + _y + $('.'+_class).height() < $(window).height() ) {
-                        $('.'+_class).css({
+                    if ( y + _y + $('.js-follow').height() < $(window).height() ) {
+                        $('.js-follow').css({
                             top: y + _y,
                             bottom: 'auto'
                         });
                     } else {
-                        $('.'+_class).css({
+                        $('.js-follow').css({
                             top: 'auto',
                             bottom: $(window).height() - y + _y - 20
                         });
@@ -93,7 +91,7 @@
             var $this = this,
                 _class = this.vars.className;
             $this.el.mouseleave(function(e) {
-                $('.'+_class).hide();
+                $('.js-follow').hide();
                 $this.vars.onOut && $this.vars.onOut.call(this,e);
             });
         },
