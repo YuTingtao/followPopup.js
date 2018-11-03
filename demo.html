@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/reset.css">
     <style>
     .demo-1,.demo-2{
+    	margin-left: 50px;
         overflow: hidden;
     }
     .demo-1 li,.demo-2 li{
@@ -64,23 +65,23 @@
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/jquery.mousefollow.js"></script>
     <script tpye="text/javascript">
-        $(function(){
-            $('.demo-1 li').mousefollow({
-                html: '<img src="" alt="">',
-                onEnter: function(e) {
-                    var url = $(this).data('imgurl');
-                // 或者 var url = $(e.currentTarget).data('imgurl');
+    $(function(){
+        $('.demo-1 li').mousefollow({
+            html: '<img src="" alt="">',
+            onEnter: function(e) {
+                var url = $(this).data('imgurl');
                 $('.js-follow').find('img').attr('src',url);
             },
             onMove: function(e) {},
             onOut: function(e) {}
         });
+        // $('.demo-1 li').mousefollow('destroy');
             
-            $('.demo-2 li').mousefollow({
-                html: '<div class="hidden-box"><img src="images/2.jpg" alt=""><p>图片1</p></div>',
-                speed: 0
-            });
+        $('.demo-2 li').mousefollow({
+            html: '<div class="hidden-box"><img src="images/2.jpg" alt=""><p>图片1</p></div>',
+            speed: 0
         });
+    });
     </script>
 </body>
 </html>
