@@ -49,13 +49,13 @@ html：
     	$(function(){
 		$('.demo-1 li').mousefollow({
 			html: '<img src="" alt="">',
-			onenter: function(e) {
+			onEnter: function(e) {
 				var url = $(this).data('imgurl');
 				// 或者 var url = $(e.currentTarget).data('imgurl');
 				$('.js-follow').find('img').attr('src',url);
 			},
-			onmove: function(e) {},
-			onout: function(e) {}
+			onMove: function(e) {},
+			onOut: function(e) {}
 		});
 		
 		$('.demo-2 li').mousefollow({
