@@ -7,13 +7,14 @@
 	var methods = {
 		init: function(options) {
 			var defaults = {
-				html: '',                   // 插入的html
-				speed: 200,                 // 淡出速度
-				x: 20,                      // 距离鼠标的水平距离
-				y: 20,                      // 距离鼠标的垂直距离
+				html: '',                // 插入的html
+				speed: 200,              // 淡出速度
+				x: 20,                   // 距离鼠标的水平距离
+				y: 20,                   // 距离鼠标的垂直距离
+				zIndex: 999,            // 插入html的层级   
 				onEnter: function(e) {}, // 鼠标进入回调
-				onMove: function(e) {},     // 鼠标移动回调
-				onOut: function(e) {}   // 鼠标移除回调
+				onMove: function(e) {},  // 鼠标移动回调
+				onOut: function(e) {}    // 鼠标移除回调
 			};
 			var settings = $.extend({}, defaults, options);
 
@@ -23,12 +24,13 @@
 					_speed = settings.speed,
 					_x = settings.x,
 					_y = settings.y,
+					_index = settings.zIndex,
 					onEnter = settings.onEnter,
 					onMove = settings.onMove,
 					onOut = settings.onOut;
 				// 插入DOM
 				if ($('.js-follow').length < 1) {
-					$('body').append('<div class="js-follow" style="position: fixed; top: 100%; display: none;"></div>');
+					$('body').append('<div class="js-follow" style="position: fixed; top: 100%; display: none; z-index: '+_index+'"></div>');
 				}
 
 				// 鼠标移入插入HTML
