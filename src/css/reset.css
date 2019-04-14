@@ -1,0 +1,106 @@
+@charset "UTF-8";
+/* reset css */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+}
+
+h1, h2, h3, h4, h5, h6, em, i {
+    font-weight: normal;
+    font-style: normal;
+}
+
+ul, ol, li {
+    list-style-type: none
+}
+
+img{
+    border: 0;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+    outline: 0
+}
+
+a:hover {
+    text-decoration: none
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+input, input:focus{
+    outline: 0;
+}
+
+input::-ms-clear, input::-ms-reveal { 
+    display: none;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder { 
+    color: #999;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+    color: #999;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #999;
+}
+
+body{
+    font-family: 'Microsoft Yahei';
+    font-size: 14px;
+    color: #333;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix:after {
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.tl {
+    text-align: left;
+}
+
+.tc {
+    text-align: center;
+}
+
+.tr {
+    text-align: right;
+}
