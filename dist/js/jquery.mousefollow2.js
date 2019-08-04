@@ -1,12 +1,20 @@
 /*
- * mousefollow v0.1.0
+ * mousefollow v1.0.0
  * author 735126858@qq.com
  * https://github.com/YuTingtao/mousefollow.js
  */
-;(function($, window, document, undefined){
+;(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof exports !== 'undefined') {
+        module.exports = factory(require('jquery'));
+    } else {
+        factory(jQuery);
+    }
+}(function($){
     // 定义MouseFollow构造函数
-    var mouseFollow = function(el, options){
-        this.el = el,
+    var mouseFollow = function(el, options) {
+        this.el = el;
         this.defaults = {
             html: '',                // 插入的html
             speed: 200,              // 淡出速度
@@ -16,8 +24,8 @@
             onEnter: function(e) {}, // 鼠标进入回调
             onMove: function(e) {},  // 鼠标移动回调
             onOut: function(e) {}    // 鼠标移除回调
-        },
-        this.opt = $.extend({}, this.defaults, options),
+        };
+        this.opt = $.extend({}, this.defaults, options);
         this.init();
     }
 
@@ -26,8 +34,8 @@
         // 插入DOM
         appendDOM: function(){
             var _index = this.opt.zIndex;
-            if ($('.js-follow').length < 1) {
-                $('body').append('<div class="js-follow" style="display: none; position: fixed; top: 100%; z-index: '+_index+'"></div>');
+            if ($('.js-mousefollow').length < 1) {
+                $('body').append('<div class="js-mousefollow" style="display: none; position: fixed; top: 100%; z-index: '+_index+'"></div>');
             }
         },
 
@@ -38,8 +46,8 @@
                 _html = this.opt.html,
                 _speed = this.opt.speed;
             $this.el.mouseenter(function(e) {
-                $('.js-follow').html(_html).fadeIn(_speed);
-                $this.opt.onEnter && $this.opt.onEnter.call(this,e);
+                $('.js-mousefollow').html(_html).fadeIn(_speed);
+                $this.opt.onEnter && $this.opt.onEnter.call(this, e);
             });
         },
 
@@ -52,39 +60,35 @@
                 _x = this.opt.x,
                 _y = this.opt.y;
 
-            $this.el.mousemove(function(event) {
-                event = event || window.event;
-                var x = event.clientX;
-                var y = event.clientY;
-                var setCssX = function() {
-                    if ( x + _x + $('.js-follow').width() < $(window).width() ) {
-                        $('.js-follow').css({
+            $this.el.mousemove(function(e) {
+                e = e || window.e;
+                var x = e.clientX;
+                var y = e.clientY;
+                setTimeout(function() {
+                    if ( x + _x + $('.js-mousefollow').width() < $(window).width() ) {
+                        $('.js-mousefollow').css({
                             left: x + _x,
                             right: 'auto'
                         });
                     } else {
-                        $('.js-follow').css({
+                        $('.js-mousefollow').css({
                             left: 'auto',
                             right: $(window).width() - x + _x -10
                         });
                     }
-                }
-                var setCssY = function(){
-                    if ( y + _y + $('.js-follow').height() < $(window).height() ) {
-                        $('.js-follow').css({
+                    if ( y + _y + $('.js-mousefollow').height() < $(window).height() ) {
+                        $('.js-mousefollow').css({
                             top: y + _y,
                             bottom: 'auto'
                         });
                     } else {
-                        $('.js-follow').css({
+                        $('.js-mousefollow').css({
                             top: 'auto',
                             bottom: $(window).height() - y + _y - 20
                         });
                     }
-                }
-                setCssX();
-                setCssY();
-                $this.opt.onMove && $this.opt.onMove.call(this,event);
+                }, 0);
+                $this.opt.onMove && $this.opt.onMove.call(this, e);
             });
         },
 
@@ -93,7 +97,7 @@
             var $this = this,
                 _class = this.opt.className;
             $this.el.mouseleave(function(e) {
-                $('.js-follow').hide();
+                $('.js-mousefollow').hide();
                 $this.opt.onOut && $this.opt.onOut.call(this,e);
             });
         },
@@ -113,4 +117,4 @@
         // 调用其方法
         return mousefollow;
     }
-})(jQuery, window, document);
+}));
