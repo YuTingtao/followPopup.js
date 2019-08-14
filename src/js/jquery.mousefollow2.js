@@ -3,7 +3,7 @@
  * author 735126858@qq.com
  * https://github.com/YuTingtao/mousefollow.js
  */
-;(function (factory) {
+;(function(factory) {
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
     } else if (typeof exports !== 'undefined') {
@@ -21,9 +21,9 @@
             x: 20,                   // 距离鼠标的水平距离
             y: 20,                   // 距离鼠标的垂直距离
             zIndex: 999,             // 插入html的层级   
-            onEnter: function(e) {}, // 鼠标进入回调
-            onMove: function(e) {},  // 鼠标移动回调
-            onOut: function(e) {}    // 鼠标移除回调
+            afterEnter: function($this) {}, // 鼠标进入回调
+            onMove: function($this) {},     // 鼠标移动回调
+            beforeOut: function($this) {}   // 鼠标移除回调
         };
         this.opt = $.extend({}, this.defaults, options);
         this.init();
@@ -40,14 +40,14 @@
         },
 
         // 鼠标移入插入HTML
-        mouseEnter: function() {
+        mouseEnter: function(e) {
             var $this = this,
                 _class = this.opt.className,
                 _html = this.opt.html,
                 _speed = this.opt.speed;
-            $this.el.mouseenter(function(e) {
+            $this.el.mouseenter(function() {
                 $('.js-mousefollow').html(_html).fadeIn(_speed);
-                $this.opt.onEnter && $this.opt.onEnter.call(this, e);
+                $this.opt.afterEnter && $this.opt.afterEnter.call(this, e);
             });
         },
 
@@ -93,12 +93,12 @@
         },
 
         // 鼠标移出删除
-        mouseOut: function() {
+        mouseOut: function(e) {
             var $this = this,
                 _class = this.opt.className;
             $this.el.mouseleave(function(e) {
                 $('.js-mousefollow').hide();
-                $this.opt.onOut && $this.opt.onOut.call(this,e);
+                $this.opt.beforeOut && $this.opt.beforeOut.call(this, e);
             });
         },
 

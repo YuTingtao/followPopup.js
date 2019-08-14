@@ -3,7 +3,7 @@
  * author 735126858@qq.com
  * https://github.com/YuTingtao/mousefollow.js
  */
-;(function (factory) {
+;(function(factory) {
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
     } else if (typeof exports !== 'undefined') {
@@ -20,9 +20,9 @@
                 x: 20, // 距离鼠标的水平距离
                 y: 20, // 距离鼠标的垂直距离
                 zIndex: 999, // 插入html的层级
-                onEnter: function(e) {}, // 鼠标进入回调
-                onMove: function(e) {}, // 鼠标移动回调
-                onOut: function(e) {} // 鼠标移除回调
+                afterEnter: function($this, index) {}, // 鼠标进入回调
+                onMove: function($this, index) {},     // 鼠标移动回调
+                beforeOut: function($this, index) {}   // 鼠标移除回调
             };
             var opt = $.extend({}, defaults, options);
 
@@ -33,18 +33,18 @@
                     _x = opt.x,
                     _y = opt.y,
                     _index = opt.zIndex,
-                    onEnter = opt.onEnter,
+                    afterEnter = opt.afterEnter,
                     onMove = opt.onMove,
-                    onOut = opt.onOut;
+                    beforeOut = opt.beforeOut;
                 // 插入DOM
                 if ($('.js-mousefollow').length < 1) {
                     $('body').append('<div class="js-mousefollow" style="display: none; position: fixed; top: 100%; z-index: ' + _index + '"></div>');
                 }
 
                 // 鼠标移入插入HTML
-                $this.on('mouseenter', function(e) {
+                $this.on('mouseenter', function() {
                     $('.js-mousefollow').html(_html).fadeIn(_speed);
-                    onEnter && onEnter.call(this, e);
+                    afterEnter && afterEnter.call(this, $this, $this.index());
                 });
 
                 // 鼠标移动实时改变位置
@@ -76,12 +76,12 @@
                             });
                         }
                     }, 0);
-                    onMove && onMove.call(this, e);
+                    onMove && onMove.call(this, $this, $this.index());
                 });
 
                 // 鼠标移出隐藏DOM
-                $this.on('mouseleave', function(e) {
-                    onOut && onOut.call(this, e);
+                $this.on('mouseleave', function() {
+                    beforeOut && beforeOut.call(this, $this, $this.index());
                     $('.js-mousefollow').hide();
                 });
 
@@ -91,9 +91,7 @@
             return $(this).each(function() {
                 var $this = $(this);
                 $('.js-mousefollow').remove();
-                $this.off('mouseenter');
-                $this.off('mousemove');
-                $this.off('mouseleave');
+                $this.off('mouseenter mousemove mouseleave');
             });
         }
     };

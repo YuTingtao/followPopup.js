@@ -67,13 +67,18 @@
     $(function() {
         $('.demo-1 li').mousefollow({
             html: '<img src="" alt="">',
-            zIndex: 100,
-            onEnter: function(e) {
-                var url = $(this).data('imgurl');
+            zIndex: 10,
+            afterEnter: function($this, index) {
+                console.log($this, index);
+                var url = $this.data('imgurl');
                 $('.js-mousefollow').find('img').attr('src', url);
             },
-            onMove: function(e) {},
-            onOut: function(e) {}
+            onMove: function($this, index) {
+                // console.log($this, index);
+            },
+            beforeOut: function($this, index) {
+                // console.log($this, index);
+            }
         });
         // $('.demo-1 li').mousefollow('destroy');
         $('.demo-2 li').mousefollow({
