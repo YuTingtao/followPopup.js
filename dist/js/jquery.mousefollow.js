@@ -20,9 +20,9 @@
                 x: 20, // 距离鼠标的水平距离
                 y: 20, // 距离鼠标的垂直距离
                 zIndex: 999, // 插入html的层级
-                afterEnter: function($this, index) {}, // 鼠标进入回调
-                onMove: function($this, index) {},     // 鼠标移动回调
-                beforeOut: function($this, index) {}   // 鼠标移除回调
+                afterEnter: function($this) {}, // 鼠标进入回调
+                onMove: function($this) {},     // 鼠标移动回调
+                beforeOut: function($this) {}   // 鼠标移除回调
             };
             var opt = $.extend({}, defaults, options);
 
@@ -44,7 +44,7 @@
                 // 鼠标移入插入HTML
                 $this.on('mouseenter', function() {
                     $('.js-mousefollow').html(_html).fadeIn(_speed);
-                    afterEnter && afterEnter.call(this, $this, $this.index());
+                    afterEnter && afterEnter.call(this, $this);
                 });
 
                 // 鼠标移动实时改变位置
@@ -76,12 +76,12 @@
                             });
                         }
                     }, 0);
-                    onMove && onMove.call(this, $this, $this.index());
+                    onMove && onMove.call(this, $this);
                 });
 
                 // 鼠标移出隐藏DOM
                 $this.on('mouseleave', function() {
-                    beforeOut && beforeOut.call(this, $this, $this.index());
+                    beforeOut && beforeOut.call(this, $this);
                     $('.js-mousefollow').hide();
                 });
 

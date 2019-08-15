@@ -40,21 +40,19 @@
         },
 
         // 鼠标移入插入HTML
-        mouseEnter: function(e) {
+        mouseEnter: function() {
             var $this = this,
-                _class = this.opt.className,
                 _html = this.opt.html,
                 _speed = this.opt.speed;
             $this.el.mouseenter(function() {
                 $('.js-mousefollow').html(_html).fadeIn(_speed);
-                $this.opt.afterEnter && $this.opt.afterEnter.call(this, e);
+                $this.opt.afterEnter && $this.opt.afterEnter.call(this, $this.el);
             });
         },
 
         // 鼠标移动改变位置
         mouseMove: function() {
             var $this = this,
-                _class = this.opt.className,
                 _html = this.opt.html,
                 _speed = this.opt.speed,
                 _x = this.opt.x,
@@ -88,17 +86,16 @@
                         });
                     }
                 }, 0);
-                $this.opt.onMove && $this.opt.onMove.call(this, e);
+                $this.opt.onMove && $this.opt.onMove.call(this, $this.el);
             });
         },
 
         // 鼠标移出删除
         mouseOut: function(e) {
-            var $this = this,
-                _class = this.opt.className;
+            var $this = this;
             $this.el.mouseleave(function(e) {
                 $('.js-mousefollow').hide();
-                $this.opt.beforeOut && $this.opt.beforeOut.call(this, e);
+                $this.opt.beforeOut && $this.opt.beforeOut.call(this, $this.el);
             });
         },
 
@@ -113,8 +110,11 @@
 
     $.fn.mousefollow = function(opt) {
         // 创造MouseFollow实例
-        var mousefollow = new mouseFollow(this, opt);
-        // 调用其方法
-        return mousefollow;
+        this.each(function() {
+            var $this = $(this);
+            var mousefollow = new mouseFollow($this, opt);
+            // 调用其方法
+            return mousefollow;
+        });
     }
 }));
