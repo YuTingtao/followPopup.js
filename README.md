@@ -12,7 +12,7 @@
 	beforeOut: function($this, index) {}    // 鼠标移除回调
 
 #demo：
-![image](https://github.com/YuTingtao/mousefollow.js/blob/master/src/images/eg-1.gif)
+![image](https://github.com/YuTingtao/mousefollow.js/blob/master/dist/images/eg-1.gif)
 
 html：
 
