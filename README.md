@@ -7,9 +7,9 @@
 	x: 20,                   // 距离鼠标的水平距离
 	y: 20,                   // 距离鼠标的垂直距离
 	zIndex: 999,             // 插入html的层级
-	afterEnter: function($this, index) {}, // 鼠标进入回调
-	onMove: function($this, index) {},  // 鼠标移动回调
-	beforeOut: function($this, index) {}    // 鼠标移除回调
+	afterEnter: function($this) {}, // 鼠标进入回调
+	onMove: function($this) {},  // 鼠标移动回调
+	beforeOut: function($this) {}    // 鼠标移除回调
 
 #demo：
 ![image](https://github.com/YuTingtao/mousefollow.js/blob/master/dist/images/eg-1.gif)
