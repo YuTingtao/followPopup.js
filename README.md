@@ -45,7 +45,7 @@ html：
 	<script src="dist/jquery.followPopup.js"></script>
 	<script tpye="text/javascript">
     	$(function(){
-	    $('.demo-1 li').followPopup({
+		$('.demo-1 li').followPopup({
                 html: '<img src="" alt="">',
                 zIndex: 10,
                 afterEnter: function($this, index) {
