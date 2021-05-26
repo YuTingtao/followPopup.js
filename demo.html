@@ -10,88 +10,22 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <style>
-        ul, li {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        .demo-1,.demo-2 {
-            margin-left: 50px;
-            overflow: hidden;
-        }
-        .demo-1 li,.demo-2 li {
-            float: left;
-            margin-left: 10px;
-            margin-top: 10px;
-        }
-        .demo-1 li a,.demo-2 li a {
-            display: block;
+        #demo{
             width: 100px;
             height: 100px;
-            background: url(img/2.jpg) no-repeat center center;
-            background-size: cover;
-        }
-        .js-follow img {
-            max-width: 400px;
-        }
-        .hidden-box p {
-            color: #333;
-            font-family: 'Microsoft Yahei';
-            text-shadow: 0 0 2px rgba(255, 255, 255, .5);
+            background: #eee;
         }
     </style>
 </head>
 <body>
-    <h1>demo1</h1>
-    <ul class="demo-1">
-        <li data-imgurl="img/1.jpg"><a href="#"></a></li>
-        <li data-imgurl="img/2.jpg"><a href="#"></a></li>
-        <li data-imgurl="img/1.jpg"><a href="#"></a></li>
-        <li data-imgurl="img/2.jpg"><a href="#"></a></li>
-        <li data-imgurl="img/1.jpg"><a href="#"></a></li>
-        <li data-imgurl="img/2.jpg"><a href="#"></a></li>
-        <li data-imgurl="img/1.jpg"><a href="#"></a></li>
-        <li data-imgurl="img/2.jpg"><a href="#"></a></li>
-        <li data-imgurl="img/1.jpg"><a href="#"></a></li>
-        <li data-imgurl="img/2.jpg"><a href="#"></a></li>
-    </ul>
-    <h1>demo2</h1>
-    <ul class="demo-2">
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-    </ul>
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="dist/jquery.followPopup.js"></script>
+    <h1>例子</h1>
+    <div id="demo"></div>
+
+    <script src="./dist/followPopup.js"></script>
     <script tpye="text/javascript">
-    $(function() {
-        $('.demo-1 li').followPopup({
-            html: '<img src="" alt="">',
-            afterEnter: function($this) {
-                console.log($this);
-                var url = $this.data('imgurl');
-                $('.js-followPopup').children('img').attr('src', url);
-            },
-            onMove: function($this) {
-                // console.log($this);
-            },
-            beforeOut: function($this) {
-                // console.log($this);
-            }
+        var followPopup = new FollowPopup(document.getElementById('demo'), {
+            html: '<div><img src="img/2.jpg" alt=""><p>图片1</p></div>'
         });
-        // $('.demo-1 li').followPopup('destroy');
-        $('.demo-2 li').followPopup({
-            html: '<div class="hidden-box"><img src="img/2.jpg" alt=""><p>图片1</p></div>',
-            fade: 300
-        });
-    });
     </script>
 </body>
 </html>
