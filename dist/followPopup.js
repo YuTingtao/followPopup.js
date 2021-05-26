@@ -17,11 +17,10 @@
         x: 20,                   // 距离鼠标的水平距离
         y: 20,                   // 距离鼠标的垂直距离
         zIndex: 999,             // 插入html的层级
-        className: 'js-followPopup', // class名称
         throttleTime: 40,        // 节流时间间隔：鼠标移动时该段时间内只触发一次执行程序
-        afterEnter: function() {}, // 鼠标进入回调
-        onMove: function() {},     // 鼠标移动回调
-        beforeOut: function() {}   // 鼠标移除回调
+        afterEnter: function() {}, // 鼠标进入钩子
+        onMove: function() {},     // 鼠标移动钩子
+        beforeOut: function() {}   // 鼠标移除钩子
     }
     // 对象合并
     function extend(defaults, options) {
@@ -39,7 +38,7 @@
         this.init();
     }
 
-    // 插入DOM
+    // 初始化
     FollowPopup.prototype.init = function() {
         var $this = this,
             _el = this.el,
@@ -52,10 +51,10 @@
             _onMove = this.opt.onMove,
             _beforeOut = this.opt.beforeOut;
         // 插入DOM
-        var _popup = document.querySelector(this.opt.className);
+        var _popup = document.getElementById('js-followPopup');
         if (!_popup) {
             _popup = document.createElement('div');
-            _popup.className = 'js-followPopup';
+            _popup.id = 'js-followPopup';
             _popup.style.display = 'none';
             _popup.style.position = 'fixed';
             _popup.style.top = '100%';
