@@ -18,9 +18,9 @@
         y: 20,                   // 距离鼠标的垂直距离
         zIndex: 999,             // 插入html的层级
         throttleTime: 40,        // 节流时间间隔：鼠标移动时该段时间内只触发一次执行程序
-        afterEnter: function() {}, // 鼠标进入钩子
-        onMove: function() {},     // 鼠标移动钩子
-        beforeOut: function() {}   // 鼠标移除钩子
+        afterEnter: function(el, popup) {}, // 鼠标进入钩子 el:鼠标移入的对象，popup:弹出层对象
+        onMove: function(el, popup) {},     // 鼠标移动钩子
+        beforeOut: function(el, popup) {}   // 鼠标移除钩子
     }
     // 对象合并
     function extend(defaults, options) {
@@ -66,7 +66,7 @@
             _popup.innerHTML = _html;
             _popup.style.display = 'block';
             // 进入之后钩子函数
-            _afterEnter && _afterEnter.call(this, _el);
+            _afterEnter && _afterEnter.call(this, _el, _popup);
             var winWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
             var popupWidth = _popup.offsetWidth;
             var popupHeight = _popup.offsetHeight;
@@ -96,16 +96,31 @@
                     timeout = null;
                 }
                 // 移动钩子函数
-                _onMove && _onMove.call(this, _el);
+                _onMove && _onMove.call(this, _el, _popup);
             };
             // 鼠标移除
             _el.onmouseleave = function() {
                 _popup.style.display = 'none';
                 // 鼠标移出钩子函数
-                _beforeOut && _beforeOut.call(this, _el);
+                _beforeOut && _beforeOut.call(this, _el, _popup);
             };
         };
     }
 
     return FollowPopup;
 })));
+
+// for jQuery
+if(window.jQuery && window.FollowPopup){
+    (function ($, FollowPopup) {
+        if (!$ || !FollowPopup) {
+            return;
+        }
+        $.fn.followPopup = function(options) {
+            options = $.extend({}, options, {'$': $});
+            this.each(function(index, el) {
+                var instance = new FollowPopup(el, options);
+            });
+        };
+    })(window.jQuery, window.FollowPopup);
+}
