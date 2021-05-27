@@ -10,7 +10,14 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <style>
-        #demo{
+        .container{ 
+            width: 1200px;
+            margin: 10px auto;
+            overflow: hidden;
+        }
+        .container div{
+            float: left;
+            margin-right: 10px;
             width: 100px;
             height: 100px;
             background: #eee;
@@ -18,14 +25,33 @@
     </style>
 </head>
 <body>
-    <h1>例子</h1>
-    <div id="demo"></div>
+    <div class="container">
+        <h2>使用案例</h2>
+        <div id="demo1"></div>
+    </div>
+    <div class="container">
+        <h2>使用jQuery</h2>
+        <div class="demo"></div>
+        <div class="demo"></div>
+    </div>
 
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="./dist/followPopup.js"></script>
     <script tpye="text/javascript">
-        var followPopup = new FollowPopup(document.getElementById('demo'), {
-            html: '<div><img src="img/2.jpg" alt=""><p>图片1</p></div>'
+        // 原生版
+        new FollowPopup(document.getElementById('demo1'), {
+            html: '<div>隐藏的内容跟随鼠标一起动...</div>',
+            afterEnter: function(el, popup) {
+                console.log(el, popup);
+            }
         });
+        // jQuery版
+        $('.demo').followPopup({
+            html: '<div>隐藏的内容跟随鼠标一起动...</div>',
+            afterEnter: function(el) {
+                console.log(el, popup);
+            }
+        })
     </script>
 </body>
 </html>
