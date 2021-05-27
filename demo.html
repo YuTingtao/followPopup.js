@@ -48,7 +48,7 @@
         // jQuery版
         $('.demo').followPopup({
             html: '<div>隐藏的内容跟随鼠标一起动...</div>',
-            afterEnter: function(el) {
+            afterEnter: function(el, popup) {
                 console.log(el, popup);
             }
         })
