@@ -17,7 +17,7 @@
         x: 20,                   // 距离鼠标的水平距离
         y: 20,                   // 距离鼠标的垂直距离
         zIndex: 999,             // 插入html的层级
-        throttleTime: 40,        // 节流时间间隔：鼠标移动时该段时间内只触发一次执行程序
+        throttleTime: 30,        // 节流时间间隔：鼠标移动时该段时间内只触发一次执行程序
         afterEnter: function(el, popup) {}, // 鼠标进入钩子 el:鼠标移入的对象，popup:弹出层对象
         onMove: function(el, popup) {},     // 鼠标移动钩子
         beforeOut: function(el, popup) {}   // 鼠标移除钩子
