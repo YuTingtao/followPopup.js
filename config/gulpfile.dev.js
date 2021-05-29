@@ -26,9 +26,9 @@ function dev() {
             port: 8090
         });
         // 监听文件
-        gulp.watch(['dist/*.html'], ['html:dev']);
-        gulp.watch(['dist/*.css'], ['css:dev']);
-        gulp.watch(['dist/*.js'], ['js:dev']);
+        gulp.watch(['dist/*.html'], ['html']);
+        gulp.watch(['dist/*.css'], ['css']);
+        gulp.watch(['dist/*.js'], ['js']);
     });
 }
 
