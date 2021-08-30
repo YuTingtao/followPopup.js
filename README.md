@@ -1,4 +1,4 @@
-# mouseFollow.js
+# followPopup.js
 轻量级原生js插件，跟随鼠标移动的弹出层插件
 
 ```javascript
