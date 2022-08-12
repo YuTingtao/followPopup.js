@@ -1,28 +1,29 @@
 {
-  "name": "followpopup",
-  "version": "1.0.0",
-  "description": "轻量级原生js插件，跟随鼠标移动的弹出层插件",
-  "main": "gulpfile.js",
+  "name": "fleximage",
+  "pluginName": "flexImage.js",
+  "version": "0.0.1",
+  "description": "轻量级横向瀑布流插件，无依赖，兼容IE9以上，类似百度图片、谷歌图片展示效果",
+  "github": "https://github.com/YuTingtao/flexImage.js",
+  "main": "dist/js/flexImage.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "gulp serve",
+    "build": "gulp build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/YuTingtao/followPopup.js.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/YuTingtao/followPopup.js/issues"
-  },
-  "homepage": "https://github.com/YuTingtao/followPopup.js#readme",
+  "author": "735126858@qq.com",
+  "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-clean": "^0.4.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-remove-strict-mode": "0.0.2",
+    "babel-preset-env": "^1.7.0",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-cached": "^1.1.1",
+    "gulp-clean-css": "^4.3.0",
     "gulp-connect": "^5.7.0",
-    "gulp-minify-css": "^1.2.4",
-    "gulp-rename": "^1.4.0",
-    "gulp-uglify": "^3.0.1",
-    "run-sequence": "^2.2.1"
+    "gulp-imagemin": "^7.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2"
   }
 }
