@@ -1,6 +1,5 @@
 /*
  * followPopup v0.0.1
- * author 735126858@qq.com
  * https://github.com/YuTingtao/followPopup.js
  */
 ;(function(global, factory) {
